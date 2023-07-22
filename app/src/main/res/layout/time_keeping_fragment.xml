@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2"
+    tools:context=".ui.home.HomeFragment">
+
+    <ImageButton
+        android:id="@+id/btn_logout"
+        android:layout_width="@dimen/margin_56_dp"
+        android:layout_height="@dimen/margin_56_dp"
+        android:layout_marginStart="@dimen/margin_16_dp"
+        android:layout_marginTop="@dimen/margin_30_dp"
+        android:background="@drawable/ic_logout" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/roboto_bold_16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="72dp"
+        android:layout_marginTop="36dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:text="Dương Chí Hoàng"
+        android:textColor="@color/md_deep_purple_900" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_time_keeping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_logout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_button_test"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="@dimen/margin_10_dp"
+        android:text="@string/str_time_keeping"
+        android:textAllCaps="false"
+        android:textColor="@color/color_white" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title_list"
+        style="@style/roboto_bold_16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_time_keeping"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/str_title_list_keeping"
+        android:textColor="@color/md_red_900" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:visibility="gone"
+        android:id="@+id/ll_list_keeping"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_title_list"
+        android:layout_marginHorizontal="1dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/md_blue_200"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/roboto_bold_16dp"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/str_stt" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_background" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/roboto_bold_16dp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/str_date" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_background" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/roboto_bold_16dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/str_note" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/ll_header"
+            android:background="@color/color_background" />
+
+        <com.timekeeping.smart.base.adapter.BaseRecyclerView
+            android:id="@+id/rcv_time_keeping"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:brv_padding_bottom="@dimen/margin_10_dp"
+            tools:listitem="@layout/item_add_address" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_notify"
+        style="@style/roboto_medium_14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title_list"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="@string/str_list_none"
+        android:textColor="@color/md_blue_grey_400" />
+
+</RelativeLayout>

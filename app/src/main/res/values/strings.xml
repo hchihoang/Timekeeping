@@ -1,0 +1,47 @@
+<resources>
+    <string name="error_place_holder">Xảy ra lỗi. Thử lại!</string>
+    <string name="timeout_error">Quá thời gian kết nối máy chủ</string>
+    <integer name="activity_anim_duration">300</integer>
+    <integer name="activity_anim_duration_out">500</integer>
+    <string name="register_password_hint"><![CDATA[Mật khẩu<br/><font color=\'#DC2220\'><i>(ít nhất 6 ký tự)</i></font>]]></string>
+    <string name="login_hint_username"><u>ID</u></string>
+    <string name="login_password_hint">Mật khẩu</string>
+    <string name="btn_login_title">Đăng nhập</string>
+    <string name="str_message_logout">Xác nhận đăng xuất ứng dụng</string>
+    <string name="str_title_logout">Thông báo đăng xuất</string>
+    <string name="str_quote">Báo giá</string>
+    <string name="str_progress">Tiến độ sản xuất</string>
+    <string name="str_progress_home">Tiến độ\nsản xuất</string>
+    <string name="str_product">Dự án - Máy sản xuất</string>
+    <string name="str_id">Mã Máy</string>
+    <string name="str_time_line">TG triển khai</string>
+    <string name="str_progress_title">Tiến độ</string>
+    <string name="str_date_end">Ngày kết thúc</string>
+    <string name="str_date_start">Ngày bắt đầu</string>
+    <string name="str_note">Ghi chú</string>
+    <string name="thongBaoChoGiayLat">Đang tải…</string>
+    <string name="str_select_time">Chọn khoản thời gian</string>
+    <string name="str_yes">Xác nhận</string>
+    <string name="str_no">Hủy</string>
+    <string name="str_error_get_data">Có lỗi trong quá trình tải dữ liệu, vui lòng thử lại!</string>
+    <string name="str_error_connect_internet">Lỗi kết nối mạng, vui lòng kiểm tra lại!</string>
+    <string name="str_validate_user_pass_work">Vui lòng nhập đầy đủ ID và mật khẩu!</string>
+    <string name="str_login_false">Đăng nhập thất bại, vui lòng thử lại!</string>
+    <string name="str_search">Tìm...</string>
+    <string name="str_turn_on_location">Vui lòng bật định vị</string>
+    <string name="str_request_location">Vui lòng cấp quyền để sử dụng</string>
+    <string name="str_add_location">Thêm vị trí chấm công</string>
+    <string name="str_input_hide">Nhập tên vị trí</string>
+    <string name="str_add_title">Tên vị trí:</string>
+    <string name="str_title_list">Danh sách vị trí chấm công</string>
+    <string name="str_list_none">Danh sách trống</string>
+    <string name="str_empty_name">Vui lòng nhập tên vị trí</string>
+    <string name="str_can_not_get_location">Không lấy được vị trí vui lòng kiểm tra và thử lại</string>
+    <string name="str_title_list_keeping">Lịch sử chấm công</string>
+    <string name="str_stt">STT</string>
+    <string name="str_date">Ngày</string>
+    <string name="sr_name_location">Tên vị trí</string>
+    <string name="str_address">Địa chỉ gần đúng</string>
+    <string name="str_xoa">Xoá</string>
+    <string name="str_time_keeping">Chấm công</string>
+</resources>

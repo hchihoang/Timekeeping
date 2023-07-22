@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/cus_bg_custom_dialog"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_24_dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/roboto_regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/md_deep_purple_500"
+        android:text="@string/str_select_time"
+        android:textSize="@dimen/margin_20_dp" />
+
+    <LinearLayout
+        android:paddingVertical="@dimen/margin_5_dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24_dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/roboto_regular"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Từ ngày: "
+            android:textSize="@dimen/margin_16_dp" />
+        <TextView
+            android:id="@+id/tv_start_date"
+            style="@style/roboto_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01/05/2023"
+            android:textSize="@dimen/margin_16_dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:paddingVertical="@dimen/margin_5_dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_14_dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/roboto_regular"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Đến ngày: "
+            android:textSize="@dimen/margin_16_dp" />
+
+        <TextView
+            android:id="@+id/tv_end_date"
+            style="@style/roboto_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01/05/2023"
+            android:textSize="@dimen/margin_16_dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24_dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_no"
+            style="@style/roboto_bold_14dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_14_dp"
+            android:text="@string/str_no"
+            app:cornerRadius="@dimen/margin_24_dp"
+            android:textColor="@color/color_white"
+            android:layout_marginEnd="@dimen/margin_10_dp"
+            android:textSize="@dimen/margin_16_dp"
+            app:backgroundTint="#B34242" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_yes"
+            style="@style/roboto_bold_14dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10_dp"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_14_dp"
+            android:text="@string/str_yes"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/margin_16_dp"
+            app:backgroundTint="#42B342"
+            app:cornerRadius="@dimen/margin_24_dp" />
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

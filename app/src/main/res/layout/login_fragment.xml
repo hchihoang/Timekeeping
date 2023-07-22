@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipToPadding="false"
+    android:background="@drawable/bg2"
+    tools:context=".ui.login.LoginFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logo_app"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="105dp"
+            android:src="@drawable/time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_form_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16_dp"
+            android:layout_marginTop="@dimen/margin_45_dp"
+            android:background="@drawable/bg_border_form_login"
+            android:orientation="vertical"
+            android:paddingHorizontal="23dp"
+            android:paddingVertical="28dp"
+            app:layout_constraintTop_toBottomOf="@+id/logo_app"
+            tools:layout_editor_absoluteX="13dp">
+
+            <com.timekeeping.smart.custom.InputView
+                android:id="@+id/login_edt_username"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_45_dp"
+                app:input_hint="@string/login_hint_username"
+                app:layout_constraintTop_toBottomOf="@+id/logo_app"
+                app:left_drawable="@null"
+                app:margin_start="15"
+                app:type="login" />
+
+            <com.timekeeping.smart.custom.InputView
+                android:id="@+id/login_edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_45_dp"
+                android:layout_marginTop="22dp"
+                app:input_hint="@string/login_password_hint"
+                app:input_type="password"
+                app:left_drawable="@null"
+                app:padding_end="38"
+                app:margin_start="15"
+                app:type="login" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_login"
+                android:stateListAnimator="@null"
+                android:elevation="0dp"
+                style="@style/roboto_medium_14dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_45_dp"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/bg_btn_login"
+                android:gravity="center"
+                android:text="@string/btn_login_title"
+                android:textAllCaps="false"
+                android:textColor="#0957DF" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

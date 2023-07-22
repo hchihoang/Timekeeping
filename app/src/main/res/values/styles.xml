@@ -1,0 +1,98 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+    <style name="roboto_bold_12dp">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/text_size_12_dp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:textStyle">normal</item>
+        <item name="lineHeight">15dp</item>
+    </style>
+
+    <style name="roboto_medium_14dp">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/text_size_14_dp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:fontWeight">500</item>
+        <item name="android:textStyle">normal</item>
+        <item name="lineHeight">14dp</item>
+    </style>
+
+    <style name="roboto_bold_14dp">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/text_size_14_dp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontWeight">700</item>
+        <item name="android:textStyle">normal</item>
+        <item name="lineHeight">17.5dp</item>
+    </style>
+    <style name="roboto_regular">
+        <item name="android:textColor">@color/md_black_1000</item>
+        <item name="android:textSize">@dimen/text_size_14_dp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontWeight">700</item>
+        <item name="android:textStyle">normal</item>
+        <item name="lineHeight">17.5dp</item>
+    </style>
+    <style name="roboto_regular_search">
+        <item name="android:textColor">@color/color_text_title</item>
+        <item name="android:textSize">@dimen/text_size_14_dp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:fontWeight">400</item>
+        <item name="lineHeight">14dp</item>
+    </style>
+    <style name="roboto_bold_16dp">
+        <item name="android:textColor">@color/color_text_title</item>
+        <item name="android:textSize">@dimen/margin_16_dp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:textStyle">normal</item>
+        <item name="lineHeight">18dp</item>
+    </style>
+
+    <style name="roboto_bold_14dp_weight600">
+        <item name="android:textColor">@color/color_text_item</item>
+        <item name="android:textSize">@dimen/margin_14_dp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:textStyle">normal</item>
+        <item name="lineHeight">18dp</item>
+    </style>
+
+    <declare-styleable name="CustomHeaderView">
+        <attr name="leftDrawable" format="reference" />
+        <attr name="leftTitle" format="string" />
+        <attr name="rightDrawable" format="reference" />
+        <attr name="rightDrawable2" format="reference" />
+        <attr name="rightTitle" format="string" />
+        <attr name="title" format="string" />
+        <attr name="is_header_chat" format="boolean" />
+        <attr name="header_background" format="color" />
+        <attr name="rightTitleColor" format="color" />
+    </declare-styleable>
+
+    <style name="HeaderMenu" parent="HeaderTitle">
+        <item name="android:textSize">@dimen/margin_16_dp</item>
+    </style>
+
+    <style name="HeaderTitle">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_text_title</item>
+        <item name="android:textSize">@dimen/margin_16_dp</item>
+        <item name="android:fontWeight">700</item>
+        <item name="lineHeight">21dp</item>
+    </style>
+</resources>
