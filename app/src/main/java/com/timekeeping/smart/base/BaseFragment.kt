@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.timekeeping.smart.BaseApplication
 import com.timekeeping.smart.base.ViewController
 import com.timekeeping.smart.base.custom.HSBALoadingDialog
 import com.timekeeping.smart.base.entity.BaseError

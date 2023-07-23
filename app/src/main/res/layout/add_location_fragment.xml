@@ -13,62 +13,73 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:leftDrawable="@drawable/ic_bg_back"
-        app:title="@string/str_check_header" />
+        app:title="@string/str_add_location_header" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_name"
-        android:layout_below="@id/header"
-        style="@style/roboto_bold_16dp"
+    <LinearLayout
+        android:id="@+id/ll_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="72dp"
+        android:layout_below="@id/header"
         android:layout_marginTop="30dp"
-        android:ellipsize="end"
         android:gravity="center"
-        android:maxLines="2"
-        android:text="Dương Chí Hoàng"
-        android:textColor="@color/md_deep_purple_900" />
+        android:orientation="horizontal"
+        android:paddingHorizontal="50dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/roboto_bold_16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_add_title" />
+
+        <com.timekeeping.smart.custom.InputView
+            android:id="@+id/input_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_45_dp"
+            android:layout_marginStart="@dimen/margin_10_dp"
+            app:input_hint="@string/str_input_hide"
+            app:left_drawable="@null"
+            app:margin_start="15"
+            app:type="login" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_time_keeping"
+        android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_name"
+        android:layout_below="@id/ll_header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:background="@drawable/bg_button_test"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:paddingHorizontal="30dp"
         android:paddingVertical="@dimen/margin_10_dp"
-        android:text="@string/str_time_keeping"
+        android:text="@string/str_add_location"
         android:textAllCaps="false"
         android:textColor="@color/color_white" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title_list"
         style="@style/roboto_bold_16dp"
-        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_time_keeping"
+        android:layout_below="@id/btn_add"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
-        android:text="@string/str_title_list_keeping"
+        android:text="@string/str_title_list"
         android:textColor="@color/md_red_900" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:visibility="gone"
-        android:id="@+id/ll_list_keeping"
+        android:id="@+id/ll_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tv_title_list"
         android:layout_marginHorizontal="1dp"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
-            android:id="@+id/ll_header"
+            android:id="@+id/ll_header_list"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/md_blue_200"
@@ -89,17 +100,27 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/roboto_bold_16dp"
-                android:layout_width="0dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/str_date" />
+                android:text="@string/str_id_vt" />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@color/color_background" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/roboto_bold_16dp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sr_name_location" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_background" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/roboto_bold_16dp"
@@ -107,23 +128,63 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/str_time" />
+                android:text="@string/str_lo" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_background" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/roboto_bold_16dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/str_latitude" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_background" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/roboto_bold_16dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/str_note_location" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_background"
+                android:visibility="gone" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/roboto_bold_16dp"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/str_xoa"
+                android:visibility="gone" />
         </LinearLayout>
 
         <View
             android:id="@+id/view_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/ll_header"
+            android:layout_below="@id/ll_header_list"
             android:background="@color/color_background" />
 
         <com.timekeeping.smart.base.adapter.BaseRecyclerView
-            android:id="@+id/rcv_time_keeping"
+            android:id="@+id/rcv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:brv_padding_bottom="@dimen/margin_10_dp"
             tools:listitem="@layout/item_add_address" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatTextView

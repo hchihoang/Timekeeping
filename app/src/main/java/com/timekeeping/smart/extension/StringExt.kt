@@ -137,3 +137,18 @@ fun String.flattenToAscii(): String {
         ""
     }
 }
+
+fun String.dateTimeToDate(): String{
+    return if(this.length> 10){
+        val date = DateUtils.stringToDate(this.substring(0, 10), Constant.DATE_FORMAT_3)
+        DateUtils.dateToString(date, Constant.DATE_FORMAT_2)
+    }else
+        this
+}
+
+fun String.dateTimeToTime(): String{
+    return if(this.length> 19){
+        this.substring(11, 19)
+    }else
+        this
+}

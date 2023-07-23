@@ -3,6 +3,7 @@ package com.timekeeping.smart.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.provider.Settings.Secure
 import android.util.TypedValue
@@ -91,5 +92,13 @@ object DeviceUtil {
     fun getDeviceId(context: Context): String {
         return Secure.getString(context.contentResolver,
             Secure.ANDROID_ID)
+    }
+
+    fun isLocationEnabled(context: Context): Boolean {
+        val locationManager: LocationManager =
+            context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
     }
 }

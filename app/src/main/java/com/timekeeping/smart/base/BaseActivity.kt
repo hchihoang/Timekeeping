@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
 import com.timekeeping.smart.R
+import com.timekeeping.smart.base.custom.HSBALoadingDialog
 import com.timekeeping.smart.extension.enableFullScreen
 import com.timekeeping.smart.extension.toast
 import com.timekeeping.smart.network.NetworkCheckerInterceptor
@@ -15,6 +16,7 @@ import java.io.IOException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import kotlin.system.exitProcess
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -41,10 +43,12 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (viewController != null && viewController?.currentFragment != null) {
             if (viewController?.currentFragment?.backPressed() == true) {
-                super.onBackPressed()
+                HSBALoadingDialog.getInstance(this).destroyLoadingDialog()
+               finish()
             }
         } else {
-            super.onBackPressed()
+            HSBALoadingDialog.getInstance(this).destroyLoadingDialog()
+            finish()
         }
 
     }

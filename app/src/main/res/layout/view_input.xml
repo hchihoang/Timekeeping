@@ -34,7 +34,7 @@
         android:layout_marginEnd="@dimen/margin_10_dp"
         android:paddingStart="@dimen/margin_4_dp"
         android:layout_height="41dp"
-        android:maxLength="100"
+        android:maxLength="250"
         android:background="@null"
         android:inputType="text"
         android:textColor="@drawable/my_custom_day_color"

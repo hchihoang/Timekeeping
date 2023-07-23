@@ -44,4 +44,14 @@
     <string name="str_address">Địa chỉ gần đúng</string>
     <string name="str_xoa">Xoá</string>
     <string name="str_time_keeping">Chấm công</string>
+    <string name="str_id_vt">Mã VT</string>
+    <string name="str_lo">Kinh độ</string>
+    <string name="str_latitude">Vĩ độ</string>
+    <string name="str_note_location">Ghi chú</string>
+    <string name="str_time">Giờ chấm công</string>
+    <string name="str_time_keeping_button">Chấm công</string>
+    <string name="str_add_location_button">Thêm vị trí</string>
+    <string name="str_add_location_header">Thêm vị trí</string>
+    <string name="str_add_success">Thêm vị trí thành công!</string>
+    <string name="str_check_header">Chấm công</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.timekeeping.smart.ui.login
 
-import android.app.Application
 import com.timekeeping.smart.BaseApplication
 import com.timekeeping.smart.R
 import com.timekeeping.smart.base.BaseViewModel
@@ -17,19 +16,22 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val hsbaSharePref: HSBASharePref) : BaseViewModel() {
+class LoginViewModel @Inject constructor(private val hsbaSharePref: HSBASharePref) :
+    BaseViewModel() {
     var loginResponse = ObjectResponse<LoginResponse>()
     fun login(userName: String, passWork: String) {
         loginResponse.value = BaseObjectResponse<LoginResponse>().loading()
-        if(userName.isBlank() || passWork.isBlank()){
+        if (userName.isBlank() || passWork.isBlank()) {
             loginResponse.value = BaseObjectResponse<LoginResponse>().error(
                 BaseError(R.string.str_validate_user_pass_work),
                 false
             )
             return
         }
-        val loginRequest = LoginRequest(userName, passWork,
-            DeviceUtil.getDeviceId(BaseApplication.context))
+        val loginRequest = LoginRequest(
+            userName, passWork,
+            DeviceUtil.getDeviceId(BaseApplication.context)
+        )
         Connection_Login(loginRequest,
             object : DataCallback<LoginResponse> {
                 override fun onConnectSuccess(result: LoginResponse) {
@@ -41,7 +43,7 @@ class LoginViewModel @Inject constructor(private val hsbaSharePref: HSBASharePre
                     val stringError: Int
                     if (!DeviceUtil.hasConnection(BaseApplication.context)) {
                         stringError = R.string.str_error_connect_internet
-                    }else {
+                    } else {
                         stringError = R.string.str_error_get_data
                     }
                     loginResponse.value = BaseObjectResponse<LoginResponse>().error(
@@ -53,8 +55,8 @@ class LoginViewModel @Inject constructor(private val hsbaSharePref: HSBASharePre
         ).execute()
     }
 
-    fun isLogin(): Boolean{
-        if(hsbaSharePref.savedUser?.maNV.isNullOrEmpty()){
+    fun isLogin(): Boolean {
+        if (hsbaSharePref.savedUser?.maNV.isNullOrEmpty()) {
             return false
         }
         return true

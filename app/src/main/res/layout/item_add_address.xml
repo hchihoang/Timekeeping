@@ -14,13 +14,28 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:minHeight="@dimen/margin_40_dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_stt"
             style="@style/roboto_medium_14dp"
-            android:layout_width="65dp"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/str_stt"
+            android:textColor="@color/md_blue_grey_900" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_background" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_id_location"
+            style="@style/roboto_medium_14dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/str_stt"
@@ -47,7 +62,7 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_address"
+            android:id="@+id/tv_longitude"
             style="@style/roboto_medium_14dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -61,8 +76,39 @@
             android:layout_height="match_parent"
             android:background="@color/color_background" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_latitude"
+            style="@style/roboto_medium_14dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/str_address"
+            android:textColor="@color/md_blue_grey_900" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_background" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_note"
+            style="@style/roboto_medium_14dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/str_address"
+            android:textColor="@color/md_blue_grey_900" />
+
+        <View
+            android:visibility="gone"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_background" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:visibility="gone"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center">

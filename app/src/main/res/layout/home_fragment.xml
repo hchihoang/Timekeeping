@@ -15,147 +15,94 @@
         android:layout_marginTop="@dimen/margin_30_dp"
         android:background="@drawable/ic_logout" />
 
-    <LinearLayout
-        android:layout_below="@id/btn_logout"
-        android:id="@+id/ll_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="50dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/roboto_bold_16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str_add_title" />
-
-        <com.timekeeping.smart.custom.InputView
-            android:id="@+id/input_name"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_45_dp"
-            android:layout_marginStart="@dimen/margin_10_dp"
-            app:input_hint="@string/str_input_hide"
-            app:left_drawable="@null"
-            app:margin_start="15"
-            app:type="login" />
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ll_header"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/bg_button_test"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:paddingHorizontal="30dp"
-        android:paddingVertical="@dimen/margin_10_dp"
-        android:text="@string/str_add_location"
-        android:textAllCaps="false"
-        android:textColor="@color/color_white" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_title_list"
-        style="@style/roboto_bold_16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_add"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:text="@string/str_title_list"
-        android:textColor="@color/md_red_900" />
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/ll_list"
-        android:visibility="gone"
-        android:orientation="vertical"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="1dp"
-        android:layout_below="@id/tv_title_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/ll_header_list"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/md_blue_200"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/roboto_bold_16dp"
-                android:layout_width="65dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/str_stt" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/color_background" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/roboto_bold_16dp"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/sr_name_location" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/color_background" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/roboto_bold_16dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/str_address" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/color_background" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/roboto_bold_16dp"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/str_xoa" />
-        </LinearLayout>
-
-        <View
-            android:id="@+id/view_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/ll_header_list"
-            android:background="@color/color_background" />
-
-        <com.timekeeping.smart.base.adapter.BaseRecyclerView
-            android:id="@+id/rcv_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:brv_padding_bottom="@dimen/margin_10_dp"
-            tools:listitem="@layout/item_add_address" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_notify"
-        style="@style/roboto_medium_14dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_title_list"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="@string/str_list_none"
-        android:textColor="@color/md_blue_grey_400" />
+        android:id="@+id/ll_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/margin_16_dp"
+        android:layout_marginTop="33dp"
+        android:elevation="2dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_add_location"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginTop="@dimen/margin_2_dp"
+            android:layout_marginHorizontal="@dimen/margin_2_dp"
+            android:layout_marginBottom="@dimen/margin_6_dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:cardCornerRadius="@dimen/margin_14_dp"
+            app:cardElevation="@dimen/margin_6_dp"
+            android:elevation="@dimen/margin_6_dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_button_test"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_marginVertical="@dimen/margin_5_dp"
+                    android:padding="@dimen/margin_8_dp"
+                    android:layout_width="@dimen/margin_70_dp"
+                    android:layout_height="@dimen/margin_70_dp"
+                    android:src="@drawable/ic_map" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_test_update"
+                    style="@style/roboto_bold_16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_add_location_button"
+                    android:textColor="@color/color_white" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_time_keeping"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginTop="@dimen/margin_16_dp"
+            android:layout_marginHorizontal="@dimen/margin_2_dp"
+            android:layout_marginBottom="@dimen/margin_6_dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:cardCornerRadius="@dimen/margin_14_dp"
+            android:layout_weight="1"
+            app:cardElevation="@dimen/margin_6_dp"
+            android:elevation="@dimen/margin_6_dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_button_test"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_marginVertical="@dimen/margin_5_dp"
+                    android:layout_width="@dimen/margin_70_dp"
+                    android:layout_height="@dimen/margin_70_dp"
+                    android:padding="@dimen/margin_8_dp"
+                    android:src="@drawable/ic_quote_request" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_medical_records"
+                    style="@style/roboto_bold_16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_time_keeping_button"
+                    android:textColor="@color/color_white" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>

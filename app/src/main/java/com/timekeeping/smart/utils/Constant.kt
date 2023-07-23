@@ -11,6 +11,9 @@ class Constant {
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
+        const val VIEW = 1
+        const val ADD_LOCATION = "1"
+        const val TIME_KEEPING = "2"
     }
 }
 

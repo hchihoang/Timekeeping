@@ -7,6 +7,7 @@ import com.timekeeping.smart.extension.onAvoidDoubleClick
 import com.timekeeping.smart.ui.home.HomeFragment
 import com.timekeeping.smart.ui.login.LoginFragment
 import com.timekeeping.smart.ui.login.LoginViewModel
+import com.timekeeping.smart.ui.splash.SplashFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.*
 
@@ -24,10 +25,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-        if(viewModel.isLogin())
-            getViewController().addFragment(HomeFragment::class.java)
-        else
-            getViewController().addFragment(LoginFragment::class.java)
+        getViewController().addFragment(SplashFragment::class.java)
     }
 
     override fun initData() {

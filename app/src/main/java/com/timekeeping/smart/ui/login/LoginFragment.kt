@@ -9,6 +9,7 @@ import com.timekeeping.smart.entity.response.LoginResponse
 import com.timekeeping.smart.extension.onAvoidDoubleClick
 import com.timekeeping.smart.extension.toast
 import com.timekeeping.smart.ui.home.HomeFragment
+import com.timekeeping.smart.ui.time_keeping.TimeKeepingFragment
 import com.timekeeping.smart.utils.DeviceUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.login_fragment.*

@@ -25,8 +25,10 @@ class CustomHeaderView @JvmOverloads constructor(
     override fun initView() {
         val lp = container_header.layoutParams
         lp.height =
-            resources.getDimensionPixelSize(R.dimen.height_top_bar)
-      //  container_header.setPadding(0, DeviceUtil.getStatusBarHeight(context), 0, 0)
+            resources.getDimensionPixelSize(R.dimen.height_top_bar) + DeviceUtil.getStatusBarHeight(
+                context
+            )
+        container_header.setPadding(0, DeviceUtil.getStatusBarHeight(context), 0, 0)
     }
 
     override fun initListener() {
