@@ -13,6 +13,7 @@ import com.timekeeping.smart.extension.toast
 import com.timekeeping.smart.extension.visible
 import com.timekeeping.smart.ui.add_location.AddLocationFragment
 import com.timekeeping.smart.ui.login.LoginFragment
+import com.timekeeping.smart.ui.report.ReportFragment
 import com.timekeeping.smart.ui.time_keeping.TimeKeepingFragment
 import com.timekeeping.smart.utils.DialogUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -87,6 +88,10 @@ class HomeFragment : BaseFragment() {
             viewModel.getPermission()
             swipeRefresh.isRefreshing = false
         })
+
+        cv_report.onAvoidDoubleClick {
+            getVC().addFragment(ReportFragment::class.java)
+        }
 
     }
 

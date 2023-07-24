@@ -56,4 +56,14 @@
     <string name="str_check_header">Chấm công</string>
     <string name="str_out_off_timekeeping">Ngoài vùng chấm công!</string>
     <string name="str_notify_none_permission">Bạn chưa được cấp quyền sử dụng chức năng, vui lòng liên hệ admin để cấp quyền</string>
+    <string name="str_report">Báo cáo \ncông việc</string>
+    <string name="str_report_header">Báo cáo công việc</string>
+    <string name="str_select_customer">Chọn khách hàng từ danh sách</string>
+    <string name="str_hide_content">Nhập nội dung công việc</string>
+    <string name="str_save">Lưu báo cáo</string>
+    <string name="str_take">Chụp \nảnh</string>
+    <string name="str_list_image">Ảnh đã chụp\n Nhấn vào để xem lại</string>
+    <string name="str_content_title">Nội dung CV</string>
+    <string name="str_list_image_title">DS hình</string>
+    <string name="str_customer">Khách hàng</string>
 </resources>
