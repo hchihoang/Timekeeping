@@ -7,6 +7,119 @@
     android:background="@drawable/bg2"
     tools:context=".ui.home.HomeFragment">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="@dimen/margin_16_dp"
+                android:layout_marginTop="33dp"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_add_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginHorizontal="@dimen/margin_2_dp"
+                    android:layout_marginTop="@dimen/margin_2_dp"
+                    android:layout_marginBottom="@dimen/margin_6_dp"
+                    android:elevation="@dimen/margin_6_dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:cardCornerRadius="@dimen/margin_14_dp"
+                    app:cardElevation="@dimen/margin_6_dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_button_test"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/margin_70_dp"
+                            android:layout_height="@dimen/margin_70_dp"
+                            android:layout_marginVertical="@dimen/margin_5_dp"
+                            android:padding="@dimen/margin_8_dp"
+                            android:src="@drawable/ic_map" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_test_update"
+                            style="@style/roboto_bold_16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/str_add_location_button"
+                            android:textColor="@color/color_white" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_time_keeping"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginHorizontal="@dimen/margin_2_dp"
+                    android:layout_marginTop="@dimen/margin_16_dp"
+                    android:layout_marginBottom="@dimen/margin_6_dp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/margin_6_dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:cardCornerRadius="@dimen/margin_14_dp"
+                    app:cardElevation="@dimen/margin_6_dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_button_test"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/margin_70_dp"
+                            android:layout_height="@dimen/margin_70_dp"
+                            android:layout_marginVertical="@dimen/margin_5_dp"
+                            android:padding="@dimen/margin_8_dp"
+                            android:src="@drawable/ic_quote_request" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_medical_records"
+                            style="@style/roboto_bold_16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/str_time_keeping_button"
+                            android:textColor="@color/color_white" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.cardview.widget.CardView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:id="@+id/tv_notify_none_permission"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/roboto_medium_14dp"
+                android:textColor="@color/md_blue_grey_400"
+                android:layout_marginHorizontal="@dimen/margin_16_dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/str_notify_none_permission"/>
+
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <ImageButton
         android:id="@+id/btn_logout"
         android:layout_width="@dimen/margin_56_dp"
@@ -14,95 +127,4 @@
         android:layout_marginStart="@dimen/margin_16_dp"
         android:layout_marginTop="@dimen/margin_30_dp"
         android:background="@drawable/ic_logout" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/ll_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginHorizontal="@dimen/margin_16_dp"
-        android:layout_marginTop="33dp"
-        android:elevation="2dp"
-        android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_add_location"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginTop="@dimen/margin_2_dp"
-            android:layout_marginHorizontal="@dimen/margin_2_dp"
-            android:layout_marginBottom="@dimen/margin_6_dp"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:cardCornerRadius="@dimen/margin_14_dp"
-            app:cardElevation="@dimen/margin_6_dp"
-            android:elevation="@dimen/margin_6_dp">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:background="@drawable/bg_button_test"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_marginVertical="@dimen/margin_5_dp"
-                    android:padding="@dimen/margin_8_dp"
-                    android:layout_width="@dimen/margin_70_dp"
-                    android:layout_height="@dimen/margin_70_dp"
-                    android:src="@drawable/ic_map" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_test_update"
-                    style="@style/roboto_bold_16dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/str_add_location_button"
-                    android:textColor="@color/color_white" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_time_keeping"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginTop="@dimen/margin_16_dp"
-            android:layout_marginHorizontal="@dimen/margin_2_dp"
-            android:layout_marginBottom="@dimen/margin_6_dp"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:cardCornerRadius="@dimen/margin_14_dp"
-            android:layout_weight="1"
-            app:cardElevation="@dimen/margin_6_dp"
-            android:elevation="@dimen/margin_6_dp">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_button_test"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_marginVertical="@dimen/margin_5_dp"
-                    android:layout_width="@dimen/margin_70_dp"
-                    android:layout_height="@dimen/margin_70_dp"
-                    android:padding="@dimen/margin_8_dp"
-                    android:src="@drawable/ic_quote_request" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_medical_records"
-                    style="@style/roboto_bold_16dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/str_time_keeping_button"
-                    android:textColor="@color/color_white" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </androidx.cardview.widget.CardView>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
 </RelativeLayout>

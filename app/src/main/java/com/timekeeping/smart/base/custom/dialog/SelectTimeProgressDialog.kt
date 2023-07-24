@@ -26,7 +26,7 @@ class SelectTimeProgressDialog(context: Context) : Dialog(context) {
         setContentView(R.layout.view_custom_dialog)
         this.window?.setBackgroundDrawableResource(R.drawable.cus_bg_custom_dialog)
         this.window?.setLayout(
-            (Resources.getSystem().displayMetrics.widthPixels * .5).toInt(),
+            (Resources.getSystem().displayMetrics.widthPixels * .95).toInt(),
             WindowManager.LayoutParams.WRAP_CONTENT
         )
         tv_start_date.text = DateUtils.dateToString(Date(), Constant.DATE_FORMAT_2)

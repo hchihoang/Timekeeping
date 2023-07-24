@@ -2,7 +2,10 @@ package com.timekeeping.smart.network;
 
 import android.location.Location;
 
+import com.timekeeping.smart.BaseApplication;
+import com.timekeeping.smart.R;
 import com.timekeeping.smart.entity.request.LocationRequest;
+import com.timekeeping.smart.entity.response.CheckTimeKeepingResponse;
 import com.timekeeping.smart.entity.response.LocationResponse;
 import com.timekeeping.smart.utils.DeviceUtil;
 
@@ -15,15 +18,15 @@ import java.util.List;
 
 public class Connection_Set_Time_Keeping extends Connection_Base {
     public Connection_Set_Time_Keeping(LocationRequest locationRequest,
-                                       DataCallback<String> callback) {
+                                       DataCallback<CheckTimeKeepingResponse> callback) {
         super();
         this.locationRequest = locationRequest;
         this.callback = callback;
     }
 
     LocationRequest locationRequest;
-    DataCallback<String> callback = null;
-    String result = "";
+    DataCallback<CheckTimeKeepingResponse> callback = null;
+    CheckTimeKeepingResponse result = new CheckTimeKeepingResponse();
 
     @Override
     protected void connectionFinish() {
@@ -69,6 +72,7 @@ public class Connection_Set_Time_Keeping extends Connection_Base {
             }
         }
         if (locationResponseList.size() > 0) {
+            Boolean isChecking = false;
             for (LocationResponse item : locationResponseList
             ) {
                 if (checkDistance(locationRequest.getLatitude(), locationRequest.getLongitude(),
@@ -82,12 +86,18 @@ public class Connection_Set_Time_Keeping extends Connection_Base {
                     ResultSet reset1 = callableStatement1.getResultSet();
                     if (reset1 != null) {
                         while (reset1.next()) {
-                            result = reset1.getString("ketqua");
+                            result.setResult(reset1.getString("ketqua"));
+                            result.setChecking(true);
                             connectSuccess = true;
+                            isChecking = true;
                         }
                     }
                     break;
                 }
+            }
+            if(!isChecking){
+                result.setResult(BaseApplication.context.getString(R.string.str_out_off_timekeeping));
+                result.setChecking(false);
             }
         }
 

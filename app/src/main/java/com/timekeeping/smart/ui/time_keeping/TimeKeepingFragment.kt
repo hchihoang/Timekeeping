@@ -15,31 +15,18 @@ import com.google.android.gms.location.LocationServices
 import com.timekeeping.smart.R
 import com.timekeeping.smart.base.BaseFragment
 import com.timekeeping.smart.base.adapter.TimeKeepingAdapter
+import com.timekeeping.smart.base.custom.dialog.SelectTimeProgressDialog
 import com.timekeeping.smart.base.entity.BaseError
+import com.timekeeping.smart.entity.request.DateRequest
 import com.timekeeping.smart.entity.response.LocationResponse
-import com.timekeeping.smart.extension.gone
-import com.timekeeping.smart.extension.onAvoidDoubleClick
-import com.timekeeping.smart.extension.onRefresh
-import com.timekeeping.smart.extension.toast
-import com.timekeeping.smart.extension.visible
-import com.timekeeping.smart.utils.Constant
-import com.timekeeping.smart.utils.DateUtils
-import com.timekeeping.smart.utils.Define
-import com.timekeeping.smart.utils.DeviceUtil
-import com.timekeeping.smart.utils.PermissionUtil
+import com.timekeeping.smart.extension.*
+import com.timekeeping.smart.utils.*
 import com.timekeeping.smart.utils.PermissionUtil.startApplicationSettingsActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.time_keeping_fragment.btn_time_keeping
-import kotlinx.android.synthetic.main.time_keeping_fragment.header
-import kotlinx.android.synthetic.main.time_keeping_fragment.ll_list_keeping
-import kotlinx.android.synthetic.main.time_keeping_fragment.rcv_time_keeping
-import kotlinx.android.synthetic.main.time_keeping_fragment.tv_name
-import kotlinx.android.synthetic.main.time_keeping_fragment.tv_notify
-import kotlinx.android.synthetic.main.time_keeping_fragment.tv_title_list
+import kotlinx.android.synthetic.main.time_keeping_fragment.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.Date
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -48,6 +35,12 @@ class TimeKeepingFragment : BaseFragment() {
     lateinit var adapter: TimeKeepingAdapter
     private val viewModel: TimeKeepingViewModel by viewModels()
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val selectTimeProgressDialog: SelectTimeProgressDialog by lazy {
+        SelectTimeProgressDialog(
+            requireContext()
+        )
+    }
+
     override val layoutId: Int
         get() = R.layout.time_keeping_fragment
 
@@ -66,7 +59,9 @@ class TimeKeepingFragment : BaseFragment() {
             setListLayoutManager(LinearLayoutManager.VERTICAL)
             onRefresh {
                 adapter.clear()
-                viewModel.getDataTimeKeeping()
+                viewModel.dateRequest?.let {
+                    viewModel.getDataTimeKeeping(it)
+                }
                 enableRefresh(false)
             }
         }
@@ -74,7 +69,11 @@ class TimeKeepingFragment : BaseFragment() {
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
-        viewModel.getDataTimeKeeping()
+        val dataRequest = DateRequest(
+            DateUtils.dateToString(Date(), Constant.DATE_FORMAT_1),
+            DateUtils.dateToString(Date(), Constant.DATE_FORMAT_1)
+        )
+        viewModel.getDataTimeKeeping(dataRequest)
         tv_name.text = viewModel.getNameUser()
         tv_title_list.text =
             getString(R.string.str_title_list_keeping) + "\n" + DateUtils.dateToString(
@@ -97,7 +96,10 @@ class TimeKeepingFragment : BaseFragment() {
             when (it.type) {
                 Define.ResponseStatus.LOADING -> showLoading()
                 Define.ResponseStatus.SUCCESS -> {
-                    toast(it.data.toString())
+                    toast(it.data?.result ?: "")
+                    if (it.data?.isChecking == false) {
+                        hideLoading()
+                    }
                 }
 
                 Define.ResponseStatus.ERROR -> {
@@ -108,6 +110,15 @@ class TimeKeepingFragment : BaseFragment() {
                         handleValidateError(it.error as? BaseError?)
                     }
                 }
+            }
+        }
+        tv_title_list.onAvoidDoubleClick {
+            selectTimeProgressDialog.show()
+            selectTimeProgressDialog.onClickBtnYes = {
+                tv_title_list.text =
+                    getString(R.string.str_title_list_keeping) + "\n" + it.startDate +" - "+ it.endDate
+                adapter.clear()
+                viewModel.getDataTimeKeeping(it)
             }
         }
     }

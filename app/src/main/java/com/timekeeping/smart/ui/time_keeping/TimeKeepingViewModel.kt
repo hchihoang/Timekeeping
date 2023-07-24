@@ -8,6 +8,7 @@ import com.timekeeping.smart.base.entity.BaseListResponse
 import com.timekeeping.smart.base.entity.BaseObjectResponse
 import com.timekeeping.smart.entity.request.DateRequest
 import com.timekeeping.smart.entity.request.LocationRequest
+import com.timekeeping.smart.entity.response.CheckTimeKeepingResponse
 import com.timekeeping.smart.entity.response.TimeKeepingResponse
 import com.timekeeping.smart.extension.ListResponse
 import com.timekeeping.smart.extension.ObjectResponse
@@ -15,26 +16,21 @@ import com.timekeeping.smart.network.Connection_Get_Time_Keeping
 import com.timekeeping.smart.network.Connection_Set_Time_Keeping
 import com.timekeeping.smart.network.DataCallback
 import com.timekeeping.smart.share_preference.HSBASharePref
-import com.timekeeping.smart.utils.Constant
-import com.timekeeping.smart.utils.DateUtils
 import com.timekeeping.smart.utils.DeviceUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
 class TimeKeepingViewModel @Inject constructor(private val hsbaSharePref: HSBASharePref) :
     BaseViewModel() {
+    var dateRequest: DateRequest? = null
     var timeKeepingResponse = ListResponse<TimeKeepingResponse>()
-    var addTimekeepingResponse = ObjectResponse<String>()
-    fun getDataTimeKeeping() {
+    var addTimekeepingResponse = ObjectResponse<CheckTimeKeepingResponse>()
+    fun getDataTimeKeeping(dateRequest: DateRequest) {
         timeKeepingResponse.value = BaseListResponse<TimeKeepingResponse>().loading()
-        val dataRequest = DateRequest(
-            DateUtils.dateToString(Date(), Constant.DATE_FORMAT_1),
-            DateUtils.dateToString(Date(), Constant.DATE_FORMAT_1),
-            hsbaSharePref.savedUser?.maNV ?: ""
-        )
-        Connection_Get_Time_Keeping(dataRequest,
+        dateRequest.maNV = hsbaSharePref.savedUser?.maNV ?: ""
+        this.dateRequest = dateRequest
+        Connection_Get_Time_Keeping(dateRequest,
             object : DataCallback<List<TimeKeepingResponse>> {
                 override fun onConnectSuccess(result: List<TimeKeepingResponse>) {
                     timeKeepingResponse.value = BaseListResponse<TimeKeepingResponse>().success(
@@ -74,18 +70,25 @@ class TimeKeepingViewModel @Inject constructor(private val hsbaSharePref: HSBASh
             hsbaSharePref.savedUser?.maNV ?: ""
         )
         Connection_Set_Time_Keeping(locationRequest,
-            object : DataCallback<String> {
-                override fun onConnectSuccess(result: String) {
-                    addTimekeepingResponse.value = BaseObjectResponse<String>().success(result)
-                    getDataTimeKeeping()
+            object : DataCallback<CheckTimeKeepingResponse> {
+                override fun onConnectSuccess(result: CheckTimeKeepingResponse) {
+                    addTimekeepingResponse.value =
+                        BaseObjectResponse<CheckTimeKeepingResponse>().success(result)
+                    if (result.isChecking == true) {
+                        dateRequest?.let {
+                            getDataTimeKeeping(it)
+                        }
+                    }
                 }
 
-                override fun onConnectFail(result: String?) {
-                    val stringError: Int
-                    if (!DeviceUtil.hasConnection(BaseApplication.context)) {
-                        stringError = R.string.str_error_connect_internet
+                override fun onConnectFail(result: CheckTimeKeepingResponse?) {
+                    val stringError: Int = if (!DeviceUtil.hasConnection(BaseApplication.context)) {
+                        R.string.str_error_connect_internet
                     } else {
-                        stringError = R.string.str_error_get_data
+                        if (result?.isChecking == false) {
+                            R.string.str_out_off_timekeeping
+                        } else
+                            R.string.str_error_get_data
                     }
                     timeKeepingResponse.value = BaseListResponse<TimeKeepingResponse>().error(
                         BaseError(stringError),

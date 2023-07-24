@@ -55,6 +55,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
         android:text="@string/str_title_list_keeping"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:textColor="@color/md_red_900" />
 
     <androidx.appcompat.widget.LinearLayoutCompat

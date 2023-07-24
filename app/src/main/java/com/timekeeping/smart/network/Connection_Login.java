@@ -61,27 +61,6 @@ public class Connection_Login extends Connection_Base {
                 connectSuccess = true;
             }
         }
-        if (connectSuccess){
-            String insertStoreProc1 = "{call [sp_SelectQuyen_AD](?)}";
-            CallableStatement callableStatement1 = conn.prepareCall(insertStoreProc1);
-            callableStatement1.setString(1, loginResponse.getMaNV());
-            callableStatement1.execute();
-            ResultSet reset1 = callableStatement1.getResultSet();
-            if (reset1 != null){
-                ArrayList<Decentralization> listDecentralization = new ArrayList<>();
-                while(reset1.next()){
-                    Decentralization decentralization = new Decentralization();
-                    decentralization.setID(reset1.getString("ID"));
-                    decentralization.setMenuID(reset1.getString("MenuID"));
-                    decentralization.setNAME_VN(reset1.getString("NAME_VN"));
-                    decentralization.setXem(reset1.getInt("Xem"));
-                    decentralization.setUserID(reset1.getString("UserID"));
-                    listDecentralization.add(decentralization);
-                }
-                reset1.close();
-                loginResponse.setListDecentralization(listDecentralization);
-            }
-        }
         closeDatabase();
     }
 }
