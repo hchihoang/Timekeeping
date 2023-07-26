@@ -14,6 +14,7 @@ class Constant {
         const val VIEW = 1
         const val ADD_LOCATION = "1"
         const val TIME_KEEPING = "2"
+        const val STORE_RESULT_OK = "OK"
     }
 }
 

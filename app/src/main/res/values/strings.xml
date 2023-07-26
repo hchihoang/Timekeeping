@@ -55,6 +55,7 @@
     <string name="str_add_success">Thêm vị trí thành công!</string>
     <string name="str_check_header">Chấm công</string>
     <string name="str_out_off_timekeeping">Ngoài vùng chấm công!</string>
+    <string name="str_ok_timekeeping">Chấm công đủ!</string>
     <string name="str_notify_none_permission">Bạn chưa được cấp quyền sử dụng chức năng, vui lòng liên hệ admin để cấp quyền</string>
     <string name="str_report">Báo cáo \ncông việc</string>
     <string name="str_report_header">Báo cáo công việc</string>

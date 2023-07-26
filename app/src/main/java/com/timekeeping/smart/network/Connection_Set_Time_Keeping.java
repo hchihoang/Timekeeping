@@ -7,12 +7,14 @@ import com.timekeeping.smart.R;
 import com.timekeeping.smart.entity.request.LocationRequest;
 import com.timekeeping.smart.entity.response.CheckTimeKeepingResponse;
 import com.timekeeping.smart.entity.response.LocationResponse;
+import com.timekeeping.smart.utils.Constant;
 import com.timekeeping.smart.utils.DeviceUtil;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,32 +74,40 @@ public class Connection_Set_Time_Keeping extends Connection_Base {
             }
         }
         if (locationResponseList.size() > 0) {
-            Boolean isChecking = false;
+//            Boolean isChecking = false;
             for (LocationResponse item : locationResponseList
             ) {
                 if (checkDistance(locationRequest.getLatitude(), locationRequest.getLongitude(),
                         item.getVIDO() , item.getKINHDO(), item.getBANKINH())){
-                    String insertStoreProc1 = "{call [sp_InsertTime_AD](?,?,?)}";
+                    String insertStoreProc1 = "{call [sp_InsertTime_AD](?,?,?,?)}";
                     CallableStatement callableStatement1 = conn.prepareCall(insertStoreProc1);
                     callableStatement1.setString(1, locationRequest.getMaNV());
                     callableStatement1.setString(2, locationRequest.getAndroidId());
                     callableStatement1.setString(3, item.getMAVT());
+                    callableStatement1.setString(4, "NO");
+                    callableStatement1.registerOutParameter(4, Types.VARCHAR);
                     callableStatement1.execute();
-                    ResultSet reset1 = callableStatement1.getResultSet();
-                    if (reset1 != null) {
-                        while (reset1.next()) {
-                            result.setResult(reset1.getString("ketqua"));
-                            result.setChecking(true);
-                            connectSuccess = true;
-                            isChecking = true;
-                        }
-                    }
+//                    ResultSet reset1 = callableStatement1.getResultSet();
+                    result.setResult(callableStatement1.getString(4));
+//                    if (reset1 != null) {
+//                        while (reset1.next()) {
+//                            result.setResult(reset1.getString("ketqua"));
+//                            result.setChecking(true);
+//                            connectSuccess = true;
+//                            isChecking = true;
+//                        }
+//                    }
                     break;
                 }
             }
-            if(!isChecking){
+            if(result.getResult().equals(Constant.STORE_RESULT_OK)){
+                result.setResult(BaseApplication.context.getString(R.string.str_ok_timekeeping));
+                result.setChecking(true);
+            }else if(result.getResult().equals("")) {
                 result.setResult(BaseApplication.context.getString(R.string.str_out_off_timekeeping));
                 result.setChecking(false);
+            }else {
+                result.setChecking(true);
             }
         }
 

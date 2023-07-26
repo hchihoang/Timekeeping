@@ -57,6 +57,7 @@ class HomeFragment : BaseFragment() {
         }else{
             tv_notify_none_permission.gone()
         }
+        cv_report.gone()
     }
     override fun initListener() {
         btn_logout.onAvoidDoubleClick {

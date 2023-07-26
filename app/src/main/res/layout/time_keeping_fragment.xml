@@ -122,7 +122,6 @@
             android:id="@+id/rcv_time_keeping"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:brv_padding_bottom="@dimen/margin_10_dp"
             tools:listitem="@layout/item_add_address" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
