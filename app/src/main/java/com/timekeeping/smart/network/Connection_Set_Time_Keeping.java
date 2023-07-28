@@ -79,16 +79,18 @@ public class Connection_Set_Time_Keeping extends Connection_Base {
             ) {
                 if (checkDistance(locationRequest.getLatitude(), locationRequest.getLongitude(),
                         item.getVIDO() , item.getKINHDO(), item.getBANKINH())){
-                    String insertStoreProc1 = "{call [sp_InsertTime_AD](?,?,?,?)}";
+                    String insertStoreProc1 = "{call [sp_InsertTime_AD](?,?,?,?,?,?)}";
                     CallableStatement callableStatement1 = conn.prepareCall(insertStoreProc1);
                     callableStatement1.setString(1, locationRequest.getMaNV());
                     callableStatement1.setString(2, locationRequest.getAndroidId());
                     callableStatement1.setString(3, item.getMAVT());
-                    callableStatement1.setString(4, "NO");
-                    callableStatement1.registerOutParameter(4, Types.VARCHAR);
+                    callableStatement1.setString(4, String.valueOf(locationRequest.getLongitude()));
+                    callableStatement1.setString(5, String.valueOf(locationRequest.getLatitude()));
+                    callableStatement1.setString(6, "NO");
+                    callableStatement1.registerOutParameter(6, Types.VARCHAR);
                     callableStatement1.execute();
 //                    ResultSet reset1 = callableStatement1.getResultSet();
-                    result.setResult(callableStatement1.getString(4));
+                    result.setResult(callableStatement1.getString(6));
 //                    if (reset1 != null) {
 //                        while (reset1.next()) {
 //                            result.setResult(reset1.getString("ketqua"));

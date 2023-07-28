@@ -63,6 +63,8 @@ public class Connection_Get_Time_Keeping extends Connection_Base {
                 response.setTRX_DATE(reset.getString("TRX_DATE"));
                 response.setGIOCHAM(reset.getString("GIOCHAM"));
                 response.setTHIETBI(reset.getString("THIETBI"));
+                response.setKINHDO(reset.getDouble("kd"));
+                response.setVIDO(reset.getDouble("vd"));
                 locationResponseList.add(response);
                 connectSuccess = true;
             }

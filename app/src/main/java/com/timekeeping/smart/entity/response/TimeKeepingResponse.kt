@@ -17,5 +17,11 @@ data class TimeKeepingResponse(
 	var GIOCHAM: String? = null,
 
 	@field:SerializedName("THIETBI")
-	var THIETBI: String? = null
+	var THIETBI: String? = null,
+
+	@field:SerializedName("kd")
+	var KINHDO: Double? = null,
+
+	@field:SerializedName("vd")
+	var VIDO: Double? = null
 )

@@ -51,7 +51,7 @@ public class Connection_Set_Location extends Connection_Base {
         CallableStatement callableStatement = conn.prepareCall(insertStoreProc);
         callableStatement.setString(1, locationRequest.getNameLocation());
         callableStatement.setString(2, locationRequest.getAndroidId());
-        callableStatement.setString(3,  String.valueOf(+locationRequest.getLongitude()));
+        callableStatement.setString(3,  String.valueOf(locationRequest.getLongitude()));
         callableStatement.setString(4, String.valueOf(locationRequest.getLatitude()));
         callableStatement.execute();
         ResultSet reset = callableStatement.getResultSet();
