@@ -155,6 +155,14 @@ fun ImageView.loadImageUrl(url: Any?) {
         .into(this)
 }
 
+fun ImageView.loadImageTestUrl(url: Any?) {
+    Glide.with(this.context)
+        .load(url)
+        .placeholder(R.drawable.ic_image_default_new)
+        .error(R.drawable.ic_image_default_new)
+        .into(this)
+}
+
 fun Dialog.showDatePickerDialog(
     isSetMaxDate: Boolean = false,
     beforeDate: Date,

@@ -4,14 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.timekeeping.smart.R
 import com.timekeeping.smart.base.BaseFragment
 import com.timekeeping.smart.base.adapter.TimeKeepingAdapter
@@ -20,6 +17,8 @@ import com.timekeeping.smart.base.entity.BaseError
 import com.timekeeping.smart.entity.request.DateRequest
 import com.timekeeping.smart.entity.response.LocationResponse
 import com.timekeeping.smart.extension.*
+import com.timekeeping.smart.rx.RxBus
+import com.timekeeping.smart.rx.RxEvent
 import com.timekeeping.smart.utils.*
 import com.timekeeping.smart.utils.PermissionUtil.startApplicationSettingsActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +33,6 @@ class TimeKeepingFragment : BaseFragment() {
     @Inject
     lateinit var adapter: TimeKeepingAdapter
     private val viewModel: TimeKeepingViewModel by viewModels()
-    private lateinit var mFusedLocationClient: FusedLocationProviderClient
     private val selectTimeProgressDialog: SelectTimeProgressDialog by lazy {
         SelectTimeProgressDialog(
             requireContext()
@@ -53,7 +51,6 @@ class TimeKeepingFragment : BaseFragment() {
     }
 
     override fun initView() {
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         rcv_time_keeping.apply {
             setAdapter(adapter)
             setListLayoutManager(LinearLayoutManager.VERTICAL)
@@ -82,6 +79,7 @@ class TimeKeepingFragment : BaseFragment() {
 
     }
 
+    @SuppressLint("CheckResult")
     override fun initListener() {
         viewModel.timeKeepingResponse.observe(viewLifecycleOwner) {
             handleListResponse(it)
@@ -116,11 +114,21 @@ class TimeKeepingFragment : BaseFragment() {
             selectTimeProgressDialog.show()
             selectTimeProgressDialog.onClickBtnYes = {
                 tv_title_list.text =
-                    getString(R.string.str_title_list_keeping) + "\n" + it.startDate +" - "+ it.endDate
+                    getString(R.string.str_title_list_keeping) + "\n" + it.startDate + " - " + it.endDate
                 adapter.clear()
                 viewModel.getDataTimeKeeping(it)
             }
         }
+
+        RxBus.listen(RxEvent.NotifyLocation::class.java)
+            .subscribe(
+                {
+                    setTimekeeping()
+                },
+                {
+
+                }
+            )
     }
 
     private fun requestPermissionLocation() {
@@ -165,27 +173,46 @@ class TimeKeepingFragment : BaseFragment() {
             }
         }
 
+    private fun setTimekeeping() {
+        val locationResult = RxBus.locationResult.value?.locationResult
+        if (locationResult != null) {
+            val geocoder = Geocoder(requireContext(), Locale.getDefault())
+            val list: List<Address>? =
+                locationResult.lastLocation?.latitude?.let {
+                    locationResult.lastLocation?.longitude?.let { it1 ->
+                        geocoder.getFromLocation(
+                            it,
+                            it1, 1
+                        )
+                    }
+                }
+            list?.let {
+                viewModel.timekeeping(
+                    list.firstOrNull()?.longitude,
+                    list.firstOrNull()?.latitude,
+                    list.firstOrNull()?.getAddressLine(0)
+                )
+            } ?: kotlin.run {
+                locationResult.lastLocation?.latitude?.let {
+                    locationResult.lastLocation?.longitude?.let { it1 ->
+                        viewModel.timekeeping(
+                            it1,
+                            it, ""
+                        )
+                    }
+                }
+            }
+        } else {
+            RxBus.publish(RxEvent.RequestLocation())
+        }
+
+    }
+
     @SuppressLint("MissingPermission", "SetTextI18n")
     private fun getLocation() {
         if (DeviceUtil.isLocationEnabled(requireContext())) {
             showLoading()
-            mFusedLocationClient.lastLocation.addOnCompleteListener(activity!!) { task ->
-                val location: Location? = task.result
-                if (location != null) {
-                    val geocoder = Geocoder(requireContext(), Locale.getDefault())
-                    val list: List<Address>? =
-                        geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                    list?.let {
-                        viewModel.timekeeping(
-                            list.firstOrNull()?.longitude,
-                            list.firstOrNull()?.latitude, list.firstOrNull()?.getAddressLine(0)
-                        )
-                    }
-                } else {
-                    toast(getString(R.string.str_can_not_get_location))
-                    hideLoading()
-                }
-            }
+            setTimekeeping()
         } else {
             toast(getString(R.string.str_turn_on_location))
             val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)

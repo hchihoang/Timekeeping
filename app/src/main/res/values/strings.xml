@@ -65,6 +65,6 @@
     <string name="str_take">Chụp \nảnh</string>
     <string name="str_list_image">Ảnh đã chụp\n Nhấn vào để xem lại</string>
     <string name="str_content_title">Nội dung CV</string>
-    <string name="str_list_image_title">DS hình</string>
+    <string name="str_list_image_title">Hình ảnh</string>
     <string name="str_customer">Khách hàng</string>
 </resources>

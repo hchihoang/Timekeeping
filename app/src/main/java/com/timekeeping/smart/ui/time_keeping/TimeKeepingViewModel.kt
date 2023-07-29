@@ -69,6 +69,7 @@ class TimeKeepingViewModel @Inject constructor(private val hsbaSharePref: HSBASh
             latitude ?: 0.0, addressLine, DeviceUtil.getDeviceId(BaseApplication.context),
             hsbaSharePref.savedUser?.maNV ?: ""
         )
+
         Connection_Set_Time_Keeping(locationRequest,
             object : DataCallback<CheckTimeKeepingResponse> {
                 override fun onConnectSuccess(result: CheckTimeKeepingResponse) {

@@ -8,6 +8,7 @@ import android.graphics.Typeface
 import android.text.Html
 import android.text.InputFilter
 import android.text.InputType
+import android.text.method.DigitsKeyListener
 import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -291,4 +292,7 @@ class InputView(context: Context, attrs: AttributeSet?) :
         layout_input.background = ContextCompat.getDrawable(context, id)
     }
 
+    fun restrictInputOnlyNumber(){
+        edt_input.keyListener = DigitsKeyListener.getInstance("0123456789")
+    }
 }

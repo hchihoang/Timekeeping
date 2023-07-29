@@ -125,6 +125,6 @@ public class Connection_Set_Time_Keeping extends Connection_Base {
         near_locations.setLatitude(endLatitude);
         near_locations.setLongitude(endLongitude);
         float distance = selected_location.distanceTo(near_locations);
-        return ((int) distance) < banKinh;
+        return ((int) distance) <= banKinh;
     }
 }
